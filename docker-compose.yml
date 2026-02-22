@@ -1,0 +1,30 @@
+services:
+
+  db:
+    image: postgres:15
+    container_name: db-new            # Unique name
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: mydb
+    ports:
+      - "5433:5432"                  # Host port alag
+    volumes:
+      - db_data_new:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: backend-new       # Unique name
+    environment:
+      DB_HOST: db-new
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: mydb
+    ports:
+      - "5001:5000"                  # Host port alag
+    depends_on:
+      - db
+
+volumes:
+  db_data_new:
