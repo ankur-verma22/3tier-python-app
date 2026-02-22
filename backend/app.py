@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return jsonify({"message": "3-Tier App Running 🚀"})
+    return jsonify({"message": "3-Tier App Ankur unning 🚀"})
 
 @app.route("/db")
 def db_check():
